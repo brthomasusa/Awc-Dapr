@@ -6,7 +6,7 @@ builder.AddCustomSerilog();
 builder.AddCustomSwagger();
 builder.AddCustomHealthChecks();
 builder.AddCustomApplicationServices();
-// builder.AddCustomDatabase();
+builder.AddCustomDatabase();
 
 builder.Services.AddDaprClient();
 builder.Services.AddControllers();

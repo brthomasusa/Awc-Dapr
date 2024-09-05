@@ -51,13 +51,10 @@ namespace Awc.Dapr.Services.Company.API
             builder.Services.AddScoped<IEventBus, DaprEventBus>();
         }
 
-        // public static void AddCustomDatabase(this WebApplicationBuilder builder)
-        // {
-        //     builder.Services.AddDbContext<CatalogDbContext>(
-        //         options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
-        // }
-
-
-
+        public static void AddCustomDatabase(this WebApplicationBuilder builder)
+        {
+            builder.Services.AddDbContext<CompanyDbContext>(
+                options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
+        }
     }
 }
