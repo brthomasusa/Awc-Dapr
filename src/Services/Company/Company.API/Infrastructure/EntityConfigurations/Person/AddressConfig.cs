@@ -1,7 +1,3 @@
-using Awc.Dapr.Services.Company.API.Model.Person;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.EntityFrameworkCore.Metadata.Builders;
-
 namespace Awc.Dapr.Services.Company.API.Infrastructure.EntityConfigurations.Person;
 
 internal class AddressConfig : IEntityTypeConfiguration<Address>

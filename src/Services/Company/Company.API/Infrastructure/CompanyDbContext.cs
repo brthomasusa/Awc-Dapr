@@ -25,6 +25,7 @@ public class CompanyDbContext(DbContextOptions options) : DbContext(options)
     public virtual DbSet<Shift>? Shift { get; set; }
 
     public virtual DbSet<Employee>? Employee { get; set; }
+    public virtual DbSet<EmployeeManager>? EmployeeManager { get; set; }
     public virtual DbSet<EmployeeDepartmentHistory>? EmployeeDepartmentHistory { get; set; }
     public virtual DbSet<EmployeePayHistory>? EmployeePayHistory { get; set; }
 
