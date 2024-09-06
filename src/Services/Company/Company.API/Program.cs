@@ -10,8 +10,8 @@ try
     builder.AddCustomApplicationServices();
     builder.Services.AddMappings();
     builder.Services.AddMediatr();
-    builder.AddCustomDatabase();
-    // builder.Services.AddPersistence();
+    // builder.AddCustomDatabase();
+    builder.Services.AddPersistence();
 
     builder.Services.AddDaprClient();
     builder.Services.AddControllers();

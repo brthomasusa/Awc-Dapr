@@ -1,3 +1,4 @@
+using Awc.Dapr.Services.Company.API.Application.Behaviors;
 using AWC.Shared.Kernel.Guards;
 using Serilog;
 
@@ -58,8 +59,8 @@ namespace Awc.Dapr.Services.Company.API
             services.AddMediatR(config =>
             {
                 config.RegisterServicesFromAssembly(typeof(Program).Assembly);
-                // config.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
-                // config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
+                config.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
+                config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
             });
         }
 
@@ -81,7 +82,7 @@ namespace Awc.Dapr.Services.Company.API
 
         public static void AddPersistence(this IServiceCollection services)
         {
-            string? connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__ProductApi");
+            string? connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__CompanyApi");
             Guard.Against.NullOrEmpty(connectionString!);
 
             services.AddDbContext<CompanyDbContext>(options =>
