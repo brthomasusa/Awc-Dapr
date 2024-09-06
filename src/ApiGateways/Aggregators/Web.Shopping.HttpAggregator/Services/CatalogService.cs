@@ -1,13 +1,8 @@
 ﻿namespace Awc.Dapr.Web.Shopping.HttpAggregator.Services;
 
-public class CatalogService : ICatalogService
+public class CatalogService(HttpClient httpClient) : ICatalogService
 {
-    private readonly HttpClient _httpClient;
-
-    public CatalogService(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
+    private readonly HttpClient _httpClient = httpClient;
 
     public Task<IEnumerable<CatalogItem>?> GetCatalogItemsAsync(IEnumerable<int> ids)
     {

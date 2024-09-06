@@ -6,6 +6,9 @@ namespace Awc.Dapr.Web.Shopping.HttpAggregator
     public static class ProgramExtensions
     {
         private const string AppName = "Shopping Aggregator API";
+        private static readonly string[] tags = ["basketapi"];
+        private static readonly string[] tagsArray = ["identityapi"];
+        private static readonly string[] tagsArray0 = ["catalogapi"];
 
         public static void AddCustomSerilog(this WebApplicationBuilder builder)
         {
@@ -91,9 +94,9 @@ namespace Awc.Dapr.Web.Shopping.HttpAggregator
             builder.Services.AddHealthChecks()
                 .AddCheck("self", () => HealthCheckResult.Healthy())
                 .AddDapr()
-                .AddUrlGroup(new Uri(builder.Configuration["CatalogUrlHC"]!), name: "catalogapi-check", tags: new [] { "catalogapi" })
-                .AddUrlGroup(new Uri(builder.Configuration["IdentityUrlHC"]!), name: "identityapi-check", tags: new [] { "identityapi" })
-                .AddUrlGroup(new Uri(builder.Configuration["BasketUrlHC"]!), name: "basketapi-check", tags: new [] { "basketapi" });
+                .AddUrlGroup(new Uri(builder.Configuration["CompanyUrlHC"]!), name: "companyapi-check", tags: tagsArray0)
+                .AddUrlGroup(new Uri(builder.Configuration["IdentityUrlHC"]!), name: "identityapi-check", tags: tagsArray)
+                .AddUrlGroup(new Uri(builder.Configuration["BasketUrlHC"]!), name: "basketapi-check", tags: tags);
 
         public static void AddCustomApplicationServices(this WebApplicationBuilder builder)
         {

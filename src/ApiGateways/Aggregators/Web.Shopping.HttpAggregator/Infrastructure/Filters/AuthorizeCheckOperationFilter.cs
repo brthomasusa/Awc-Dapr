@@ -2,11 +2,12 @@
 
 public class AuthorizeCheckOperationFilter : IOperationFilter
 {
+    private static readonly string[] item = ["shoppingaggr"];
+
     public void Apply(OpenApiOperation operation, OperationFilterContext context)
     {
         // Check for authorize attribute
-        var hasAuthorize = context.MethodInfo.DeclaringType?.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any() ?? false ||
-                           context.MethodInfo.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any();
+        var hasAuthorize = context.MethodInfo.DeclaringType?.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any() ?? context.MethodInfo.GetCustomAttributes(true).OfType<AuthorizeAttribute>().Any();
 
         if (!hasAuthorize) return;
 
@@ -20,10 +21,8 @@ public class AuthorizeCheckOperationFilter : IOperationFilter
 
         operation.Security = new List<OpenApiSecurityRequirement>
         {
-            new OpenApiSecurityRequirement
-            {
-                [ oAuthScheme ] = new [] { "shoppingaggr" }
-            }
+            new() {
+                [ oAuthScheme ] = item }
         };
     }
 }

@@ -1,17 +1,11 @@
 namespace Awc.Dapr.BuildingBlocks.EventBus
 {
-    public class DaprEventBus : IEventBus
+    public class DaprEventBus(DaprClient dapr, ILogger<DaprEventBus> logger) : IEventBus
     {
         private const string PubSubName = "eshopondapr-pubsub";
 
-        private readonly DaprClient _dapr;
-        private readonly ILogger _logger;
-
-        public DaprEventBus(DaprClient dapr, ILogger<DaprEventBus> logger)
-        {
-            _dapr = dapr;
-            _logger = logger;
-        }
+        private readonly DaprClient _dapr = dapr;
+        private readonly ILogger _logger = logger;
 
         public async Task PublishAsync(IntegrationEvent integrationEvent)
         {

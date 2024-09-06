@@ -6,7 +6,5 @@ namespace Awc.Dapr.BuildingBlocks.EventBus.Abstractions
         Task Handle(TIntegrationEvent @event);
     }
 
-    public interface IIntegrationEventHandler
-    {
-    }
+    public interface IIntegrationEventHandler;
 }

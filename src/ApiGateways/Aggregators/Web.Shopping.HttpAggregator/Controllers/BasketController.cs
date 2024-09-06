@@ -3,16 +3,10 @@
 [Route("api/v1/[controller]")]
 [Authorize]
 [ApiController]
-public class BasketController : ControllerBase
+public class BasketController(ICatalogService catalogService, IBasketService basketService) : ControllerBase
 {
-    private readonly ICatalogService _catalog;
-    private readonly IBasketService _basket;
-
-    public BasketController(ICatalogService catalogService, IBasketService basketService)
-    {
-        _catalog = catalogService;
-        _basket = basketService;
-    }
+    private readonly ICatalogService _catalog = catalogService;
+    private readonly IBasketService _basket = basketService;
 
     [HttpPost]
     [HttpPut]
@@ -24,7 +18,7 @@ public class BasketController : ControllerBase
     {
         BasketData basket;
 
-        if (data.Items is null || !data.Items.Any())
+        if (data.Items?.Any() != true)
         {
             basket = new();
         }
@@ -45,12 +39,12 @@ public class BasketController : ControllerBase
         }
 
         // Save the updated shopping basket.
-        await _basket.UpdateAsync(basket, authorization.Substring("Bearer ".Length));
+        await _basket.UpdateAsync(basket, authorization["Bearer ".Length..]);
 
         return basket;
     }
 
-    private BasketData CreateValidatedBasket(
+    private static BasketData CreateValidatedBasket(
         IEnumerable<UpdateBasketRequestItemData> basketItems,
         IEnumerable<CatalogItem> catalogItems)
     {

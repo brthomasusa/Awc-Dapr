@@ -1,13 +1,8 @@
 ﻿namespace Awc.Dapr.Web.Shopping.HttpAggregator.Services;
 
-public class BasketService : IBasketService
+public class BasketService(HttpClient httpClient) : IBasketService
 {
-    private readonly HttpClient _httpClient;
-
-    public BasketService(HttpClient httpClient)
-    {
-        _httpClient = httpClient;
-    }
+    private readonly HttpClient _httpClient = httpClient;
 
     public async Task UpdateAsync(BasketData currentBasket, string accessToken)
     {

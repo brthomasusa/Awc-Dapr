@@ -6,7 +6,7 @@ namespace Awc.Dapr.Services.Company.API
     public static class ProgramExtensions
     {
         private const string AppName = "Company API";
-        private static readonly string[] tags = new [] { "catalogdb" };
+        private static readonly string[] tags = ["catalogdb"];
 
         public static void AddCustomConfiguration(this WebApplicationBuilder builder)
         {
@@ -76,7 +76,7 @@ namespace Awc.Dapr.Services.Company.API
         public static void AddCustomDatabase(this WebApplicationBuilder builder)
         {
             builder.Services.AddDbContext<CompanyDbContext>(
-                options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
+                options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]));
         }
 
         public static void AddPersistence(this IServiceCollection services)
