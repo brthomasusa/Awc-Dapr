@@ -20,6 +20,14 @@ public class CompanyDbContext(DbContextOptions options) : DbContext(options)
     public virtual DbSet<PhoneNumberType>? PhoneNumberType { get; set; }
     public virtual DbSet<StateProvince>? StateProvince { get; set; }
 
+    public virtual DbSet<Awc.Dapr.Services.Company.API.Model.Company.Company>? Company { get; set; }
+    public virtual DbSet<Department>? Department { get; set; }
+    public virtual DbSet<Shift>? Shift { get; set; }
+
+    public virtual DbSet<Employee>? Employee { get; set; }
+    public virtual DbSet<EmployeeDepartmentHistory>? EmployeeDepartmentHistory { get; set; }
+    public virtual DbSet<EmployeePayHistory>? EmployeePayHistory { get; set; }
+
     public override async Task<int> SaveChangesAsync(CancellationToken cancellationToken = new CancellationToken())
         => await base.SaveChangesAsync(cancellationToken);
 

@@ -15,6 +15,8 @@ global using Awc.Dapr.Services.Company.API.Infrastructure;
 global using Awc.Dapr.Services.Company.API.Infrastructure.EntityConfigurations;
 // global using Awc.Dapr.Services.Company.API.IntegrationEvents.EventHandling;
 // global using Awc.Dapr.Services.Company.API.IntegrationEvents.Events;
+global using Awc.Dapr.Services.Company.API.Model.Company;
+global using Awc.Dapr.Services.Company.API.Model.Employees;
 global using Awc.Dapr.Services.Company.API.Model.Person;
 // global using Awc.Dapr.Services.Company.API.ViewModel;
 global using Microsoft.Extensions.Configuration;
