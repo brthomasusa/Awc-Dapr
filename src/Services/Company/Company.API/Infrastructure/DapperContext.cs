@@ -1,17 +1,11 @@
 using System.Data;
 using Microsoft.Data.SqlClient;
 
-namespace AWC.PersonData.API.Infrastructure.Persistence;
+namespace Awc.Dapr.Services.Company.API.Infrastructure;
 
-public class DapperContext
+public class DapperContext(string connStr)
 {
-    private readonly string _connectionStr;
-
-    public DapperContext(string connStr)
-    {
-        _connectionStr = connStr;
-    }
-
+    private readonly string _connectionStr = connStr;
 
     public IDbConnection CreateConnection() => new SqlConnection(_connectionStr);
 }

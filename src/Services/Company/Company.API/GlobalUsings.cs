@@ -25,5 +25,7 @@ global using Microsoft.Extensions.Diagnostics.HealthChecks;
 global using Microsoft.Extensions.FileProviders;
 global using Microsoft.Extensions.Hosting;
 global using Microsoft.OpenApi.Models;
+global using Mapster;
+global using MapsterMapper;
 global using Polly;
 global using System.Net;

@@ -1,3 +1,4 @@
+using AWC.Shared.Kernel.Guards;
 using Serilog;
 
 namespace Awc.Dapr.Services.Company.API
@@ -51,10 +52,51 @@ namespace Awc.Dapr.Services.Company.API
             builder.Services.AddScoped<IEventBus, DaprEventBus>();
         }
 
+
+        public static void AddMediatr(this IServiceCollection services)
+        {
+            services.AddMediatR(config =>
+            {
+                config.RegisterServicesFromAssembly(typeof(Program).Assembly);
+                // config.AddOpenBehavior(typeof(RequestLoggingPipelineBehavior<,>));
+                // config.AddOpenBehavior(typeof(ValidationPipelineBehavior<,>));
+            });
+        }
+
+        public static void AddMappings(this IServiceCollection services)
+        {
+            var config = TypeAdapterConfig.GlobalSettings;
+            config.Scan(ServerAssembly.Instance);
+            config.Default.NameMatchingStrategy(NameMatchingStrategy.IgnoreCase);
+
+            services.AddSingleton(config);
+            services.AddScoped<IMapper, ServiceMapper>();
+        } 
+
         public static void AddCustomDatabase(this WebApplicationBuilder builder)
         {
             builder.Services.AddDbContext<CompanyDbContext>(
                 options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]!));
         }
+
+        public static void AddPersistence(this IServiceCollection services)
+        {
+            string? connectionString = Environment.GetEnvironmentVariable("ConnectionStrings__ProductApi");
+            Guard.Against.NullOrEmpty(connectionString!);
+
+            services.AddDbContext<CompanyDbContext>(options =>
+                options.UseSqlServer(
+                    connectionString,
+                    x => x.UseHierarchyId()
+                )
+                .EnableSensitiveDataLogging()
+                .EnableDetailedErrors()
+            );
+
+            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(connectionString!));
+
+            // services.AddMemoryCache();
+            // services.AddSingleton<ICacheService, CacheService>();
+        }               
     }
 }
