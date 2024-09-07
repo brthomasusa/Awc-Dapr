@@ -77,7 +77,7 @@ namespace Awc.Dapr.Services.Company.API
         public static void AddCustomDatabase(this WebApplicationBuilder builder)
         {
             builder.Services.AddDbContext<CompanyDbContext>(
-                options => options.UseSqlServer(builder.Configuration["ConnectionStrings:CatalogDB"]));
+                options => options.UseSqlServer(builder.Configuration["ConnectionStrings__CompanyApi"]));
         }
 
         public static void AddPersistence(this IServiceCollection services)

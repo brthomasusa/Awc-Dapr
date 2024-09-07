@@ -52,3 +52,8 @@ finally
 {
     Serilog.Log.CloseAndFlush();
 }
+
+namespace Awc.Dapr.Services.Company.API
+{
+    public partial class Program;
+}

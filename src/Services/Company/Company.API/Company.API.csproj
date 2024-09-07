@@ -36,6 +36,10 @@
   </ItemGroup>
 
   <ItemGroup>
+    <InternalsVisibleTo Include="Company.API.IntegrationTests" />
+  </ItemGroup>
+
+  <ItemGroup>
     <ProjectReference Include="../../../BuildingBlocks/EventBus/EventBus.csproj" />
     <ProjectReference Include="../../../BuildingBlocks/Healthchecks/Healthchecks.csproj" />
     <ProjectReference Include="../../../BuildingBlocks/Shared.Kernel/Shared.Kernel.csproj" />
