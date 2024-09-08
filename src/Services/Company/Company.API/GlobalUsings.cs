@@ -7,6 +7,7 @@ global using Microsoft.AspNetCore.Hosting;
 global using Microsoft.AspNetCore.Mvc;
 global using Microsoft.EntityFrameworkCore;
 global using Microsoft.EntityFrameworkCore.Metadata.Builders;
+global using AWC.Shared.Kernel.Utilities;
 global using Awc.Dapr.BuildingBlocks.EventBus;
 global using Awc.Dapr.BuildingBlocks.EventBus.Abstractions;
 global using Awc.Dapr.BuildingBlocks.EventBus.Events;

@@ -1,43 +1,14 @@
 {
-  "Logging": {
-    "LogLevel": {
-      "Default": "Information",
-      "Microsoft.AspNetCore": "Warning"
-    }
-  },
-  "Serilog": {
-    "Using": [ 
-      "Serilog.Sinks.Console",
-      "Serilog.Sinks.File",  
-      "Serilog.Sinks.Seq" 
-    ],
-    "MinimumLevel": {
-      "Default": "Warning",
-      "Override": {
-        "Default": "Information",
-        "Microsoft.AspNetCore": "Warning",
-        "Microsoft.AspNetCore.Hosting": "Information",
-        "Microsoft.AspNetCore.Routing.EndpointMiddleware": "Information"
-      }
-    },
-    "WriteTo": [
-      { "Name": "Console" },
-      {
-        "Name": "File",
-        "Args": {
-          "path": "/logs/log-.txt",
-          "rollingInterval": "Day",
-          "rollOnFileSizeLimit": true,
-          "formatter": "Serilog.Formatting.Compact.CompactJsonFormatter, Serilog.Formatting.Compact"
+    "ConnectionString": "Server=tcp:localhost,1434;Database=CompanyAPI;User Id=sa;Password=Info99Gum;TrustServerCertificate=True",
+    "UseCustomizationData": true,
+    "Serilog": {
+      "MinimumLevel": {
+        "Default": "Debug",
+        "Override": {
+          "Microsoft": "Warning",
+          "Awc.Dapr": "Debug",
+          "System": "Warning"
         }
       }
-    ],
-    "Enrich": [ "FromLogContext", "WithMachineName", "WithThreadId" ]    
-  },
-  "AllowedHosts": "*",
-    "Kestrel": {
-        "EndpointDefaults": {
-            "Protocols": "Http1AndHttp2"
-        }
     }
-}
+  }

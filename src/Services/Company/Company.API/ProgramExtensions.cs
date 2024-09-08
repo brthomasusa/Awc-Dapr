@@ -1,4 +1,5 @@
 using Awc.Dapr.Services.Company.API.Application.Behaviors;
+using Awc.Dapr.Services.Company.API.Services;
 using AWC.Shared.Kernel.Guards;
 using Serilog;
 
@@ -94,7 +95,11 @@ namespace Awc.Dapr.Services.Company.API
                 .EnableDetailedErrors()
             );
 
-            _ = services.AddSingleton<DapperContext>(_ => new DapperContext(connectionString!));
+            services.AddSingleton<DapperContext>(_ => new DapperContext(connectionString!));
+            services.AddScoped<ICompanyService, CompanyService>();
+
+            // services.AddScoped<ICompanyService>(sp =>
+            //     sp.GetRequiredService<CompanyService>());
 
             // services.AddMemoryCache();
             // services.AddSingleton<ICacheService, CacheService>();

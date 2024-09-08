@@ -4,7 +4,7 @@ builder.AddCustomSerilog();
 
 try
 {
-    builder.AddCustomConfiguration();
+    // builder.AddCustomConfiguration();
     builder.AddCustomSwagger();
     builder.AddCustomHealthChecks();
     builder.AddCustomApplicationServices();
@@ -37,7 +37,7 @@ try
     app.MapSubscribeHandler();
     app.MapCustomHealthChecks("/hc", "/liveness", UIResponseWriter.WriteHealthCheckUIResponse);
 
-        app.Logger.LogInformation("Applying database migration ({ApplicationName})...", appName);
+        // app.Logger.LogInformation("Applying database migration ({ApplicationName})...", appName);
 
         // app.ApplyDatabaseMigration();
 
