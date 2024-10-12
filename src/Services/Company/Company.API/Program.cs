@@ -1,6 +1,10 @@
+using Microsoft.AspNetCore.Builder;
+
 var appName = "Company API";
 var builder = WebApplication.CreateBuilder(args);
-builder.AddCustomSerilog();
+
+builder.Host.UseSerilog((context, loggerConfig) =>
+    loggerConfig.ReadFrom.Configuration(context.Configuration));
 
 try
 {
@@ -10,8 +14,7 @@ try
     builder.AddCustomApplicationServices();
     builder.Services.AddMappings();
     builder.Services.AddMediatr();
-    // builder.AddCustomDatabase();
-    builder.Services.AddPersistence();
+    builder.AddCustomDatabase();
 
     builder.Services.AddDaprClient();
     builder.Services.AddControllers();

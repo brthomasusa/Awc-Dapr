@@ -1,5 +1,5 @@
 {
-    "ConnectionString": "Server=tcp:localhost,1434;Database=CompanyAPI;User Id=sa;Password=Info99Gum;TrustServerCertificate=True",
+    "ConnectionString": "Server=tcp:localhost,5434;Database=CompanyAPI;User Id=sa;Password=Info99Gum;TrustServerCertificate=True",
     "UseCustomizationData": true,
     "Serilog": {
       "MinimumLevel": {

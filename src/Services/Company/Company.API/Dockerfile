@@ -16,19 +16,19 @@ COPY ["src/BuildingBlocks/Healthchecks/Healthchecks.csproj", "src/BuildingBlocks
 COPY ["src/BuildingBlocks/Shared.Kernel/Shared.Kernel.csproj", "src/BuildingBlocks/Shared.Kernel/"]
 COPY ["src/Services/Company/Company.API/Company.API.csproj", "src/Services/Company/Company.API/"]
 COPY ["src/Services/Product/Product.API/Product.API.csproj", "src/Services/Product/Product.API/"]
-COPY ["docker-compose.dcproj", "./"]
+COPY ["test/Company.API.IntegrationTests/Company.API.IntegrationTests.csproj", "test/Company.API.IntegrationTests/"]
 COPY ["NuGet.config", "./"]
 COPY ["AWC.Dapr.sln", "./"]
 
 RUN dotnet restore "AWC.Dapr.sln"
 
 COPY . .
-WORKDIR "/src/src/ApiGateways/Aggregators/Web.Shopping.HttpAggregator"
+WORKDIR "/src/src/Services/Company/Company.API"
 
 FROM build AS publish
-RUN dotnet publish --no-restore "Web.Shopping.HttpAggregator.csproj" -c Release -o /app/publish
+RUN dotnet publish --no-restore "Company.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Web.Shopping.HttpAggregator.dll"]
+ENTRYPOINT ["dotnet", "Company.API.dll"]

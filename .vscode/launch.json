@@ -1,0 +1,39 @@
+{
+    "version": "0.2.0",
+    "configurations": [
+        {
+            "name": ".NET Core Attach",
+            "type": "coreclr",
+            "request": "attach",
+            "processId": "${command:pickProcess}"
+        },
+        {
+            "name": ".NET Core Launch Company.API",
+            "type": "coreclr",
+            "request": "launch",
+            "preLaunchTask": "dapr-debug-companyapi",
+            "program": "${workspaceFolder}/src/Services/Company/Company.API/bin/Debug/net8.0/Company.API.dll",
+            "args": [],
+            "cwd": "${workspaceFolder}/src/Services/Company/Company.API",
+            "stopAtEntry": false,
+            "env": {
+                "ASPNETCORE_ENVIRONMENT": "Development",
+                "ASPNETCORE_URLS": "http://+:5052",
+                "DAPR_HTTP_PORT": "5010"
+            },
+            "sourceFileMap": {
+                "/Views": "${workspaceFolder}/Views"
+            },                        
+            "postDebugTask": "daprd-down-companyapi"
+        }       
+    ],
+    "compounds": [
+        {
+            "name": "Launch Company.API w/Dapr",
+            "configurations": 
+            [
+                ".NET Core Launch Company.API"
+            ]
+        }
+    ]    
+}

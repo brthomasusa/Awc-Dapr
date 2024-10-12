@@ -3,6 +3,9 @@
 ##
 ## Get latest from https://github.com/github/gitignore/blob/main/VisualStudio.gitignore
 
+# Don't copy dapr secrets store
+awc-secrets.json
+
 # User-specific files
 *.rsuser
 *.suo

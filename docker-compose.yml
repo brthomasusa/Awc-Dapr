@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+
+  zipkin:
+    image: openzipkin/zipkin-slim:latest    
+
+  seq:
+    image: datalust/seq:latest
+
+  company-api:
+    image: company.api:${TAG:-latest}
+    build:
+      context: .
+      dockerfile: src/Services/Company/Company.API/Dockerfile
+    depends_on:
+      - seq
+
+  company-api-dapr:
+    image: "daprio/daprd:1.13.1"
+    network_mode: "service:company-api"
+    depends_on:
+      - company-api
+
+  dapr-placement:
+    image: "daprio/dapr:1.13.1" 

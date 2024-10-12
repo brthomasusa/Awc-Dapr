@@ -23,12 +23,12 @@ COPY ["AWC.Dapr.sln", "./"]
 RUN dotnet restore "AWC.Dapr.sln"
 
 COPY . .
-WORKDIR "/src/src/ApiGateways/Aggregators/Web.Shopping.HttpAggregator"
+WORKDIR "/src/src/Services/Product/Product.API"
 
 FROM build AS publish
-RUN dotnet publish --no-restore "Web.Shopping.HttpAggregator.csproj" -c Release -o /app/publish
+RUN dotnet publish --no-restore "Product.API.csproj" -c Release -o /app/publish
 
 FROM base AS final
 WORKDIR /app
 COPY --from=publish /app/publish .
-ENTRYPOINT ["dotnet", "Web.Shopping.HttpAggregator.dll"]
+ENTRYPOINT ["dotnet", "Product.API.dll"]
